@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chanter Chanter</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    
+  </head>  
+  <body>
+    <section id="root-container">
+      <div id="banner"></div>
+      <div id="main-area">
+        <div id="users-list-container"></div>
+        <div id="newsfeed-container"></div>
+      </div>
+    </section>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    
+    <script src="/utils.js"></script>
+    <script src="/api.js"></script>
+    <script src="/script.js"></script>
+    
+    <script id="welcome-tpl" type="text/x-handlebars-template">
+      <h3 id="banner-title">Welcome, <span class="user-welcome">{{username}}</span>!</h3>
+      <button id="LogoutAction">Sign Out</button>
+    </script>
+
+    <script id="login-tpl" type="text/x-handlebars-template">
+      <section id="form-container">
+        <h3>Login / Register</h3>
+        <div>{{msg}}</div>
+        <label>Username</label>
+        <input type="text" name="username" />
+        <label>Password</label>
+        <input type="password" name="password" />
+        <button id="LoginAction">Login</button>
+        <button class="button button-outline" id="RegisterAction">Register</button>
+      </section>
+    </script>
+    
+    <script id="feed-tpl" type="text/x-handlebars-template">
+      <div id="post-area">
+        <textarea id="post-content" placeholder="Post something!"></textarea>
+        <button id="submitPost">Post</button>
+      </div>
+      <div class="newsfeed">
+        <h3>Newsfeed</h3>
+        {{#each this as |post|}}
+          <div class="post">
+            <div class="post-content">
+              <span>{{post.author.username}}</span>
+              <span class="post-body">{{post.body_text}}</span>
+              <span>{{date post.created_on}}</span></div>
+              {{#if post.isMine}}
+                <button class="delete-post" data-id="{{post.id}}">Delete</button>
+              {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    </script>
+    
+    <script id="users-tpl" type="text/x-handlebars-template">
+      <h3>All Users ({{ count }})</h3>
+      {{#each users as |user|}}
+        <div>
+          <div class="user">
+            {{user.username}}
+            {{#if user.iFollow}}
+              <button class="unfollow-me button button-small button-outline" data-id="{{user.id}}">Unfollow</button>
+            {{else}}
+              <button class="follow-me button button-small button-outline" data-id="{{user.id}}">Follow</button>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    </script>
+
+  </body>
+</html>

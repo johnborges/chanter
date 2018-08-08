@@ -1,0 +1,90 @@
+/* CSS files add styling rules to your content */
+
+body {
+    font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    margin: 2em;
+  }
+  
+  h1 {
+    font-style: italic;
+    color: #373fff;
+  }
+  
+  #root-container {
+   margin: 2em; 
+  }
+  
+  #banner{
+    display: flex;
+    border-bottom: 1px solid #eee;
+  }
+  
+  #banner-title{
+    margin-right: 20px; 
+  }
+  
+  .user-welcome{
+    color: #9b4dca; 
+  }
+  
+  #main-area {
+    margin-top: 20px;
+    display: flex; 
+  }
+  
+  #users-list-container{
+   width: 300px; 
+   padding-right: 60px;
+  }
+  
+  /* #newsfeed-container{
+   width: 100%; 
+  } */
+  
+  .user{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #post-area {
+   display: flex; 
+   justify-content: flex-start;
+   align-items: center;
+  }
+  
+  #post-content {
+   width: 500px; 
+   margin-right: 20px;
+  }
+  
+  #form-container { 
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .post{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f4f5f6;
+    border-radius: 4px;
+    padding: 5px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  /* .post:hover{
+   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
+  } */
+  
+  .post-content{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .post-body {
+    font-size: 1.3em;
+    color: #000;
+  }
+  
+  
